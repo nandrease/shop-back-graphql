@@ -7,11 +7,12 @@ type Mutation {
 	createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!
 	updateItem(id: ID!, title: String, description: String, price: Int): Item!
 	deleteItem(id: ID!): Item
-	signUp(email: String!, password: String!, name: String!): User!
-	signIn(email: String!, password: String!): User!
-	signOut: SuccessMessage
+	signup(email: String!, password: String!, name: String!): User!
+	signin(email: String!, password: String!): User!
+	signout: SuccessMessage
 	requestReset(email: String!): SuccessMessage
-    resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
+	resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
+	updatePermissions(permissions: [Permission], userId: ID!): User
 }
 
 type Query {
@@ -19,6 +20,7 @@ type Query {
 	item(where: ItemWhereUniqueInput!): Item
 	itemsConnection(where: ItemWhereInput): ItemConnection!
 	me: User
+	users: [User]!
 }
 
 type User {
